@@ -1,0 +1,25 @@
+name: Ilan Kontrol
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Her yarım saatte bir
+  workflow_dispatch:
+
+jobs:
+  check-ilan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: node -e "require('./index').ilanlariCekVeKontrolEt()"
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_SECURE: ${{ secrets.MAIL_SECURE }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
