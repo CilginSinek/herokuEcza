@@ -3,7 +3,6 @@ name: Ilan Kontrol
 on:
   schedule:
     - cron: '*/30 * * * *' # Her yarım saatte bir
-  workflow_dispatch:
 
 jobs:
   check-ilan:
