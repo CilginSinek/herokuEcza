@@ -1,6 +1,7 @@
 name: Scheduled Workflow
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '*/10 * * * *' # Her 5 dakikada bir
 
