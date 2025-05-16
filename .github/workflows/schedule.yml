@@ -1,9 +1,8 @@
-name: Ilan Kontrol
+name: Scheduled Workflow
 
 on:
   schedule:
     - cron: '*/10 * * * *' # Her 5 dakikada bir
-  workflow_dispatch:
 
 jobs:
   check-ilan:
