@@ -96,6 +96,8 @@ async function ilanlariCekVeKontrolEt() {
     }
   } catch (error) {
     console.error("Hata oluştu:", error);
+  } finally {
+    await mongoose.connection.close();
   }
 }
 
