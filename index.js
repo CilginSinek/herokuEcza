@@ -22,8 +22,6 @@ const ilanSchema = new mongoose.Schema({
 });
 const Ilan = mongoose.model("Ilan", ilanSchema);
 
-console.log(process.env.MAIL_HOST, process.env.MAIL_PORT, process.env.MAIL_USER, process.env.MAIL_PASS);
-
 // Mail ayarları
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
@@ -88,14 +86,11 @@ async function ilanlariCekVeKontrolEt() {
         ).join("\n"),
       };
 
-      transporter.sendMail(mailOptions, async (error, info) => {
-        if (error) {
-          return console.error("Mail gönderilemedi:", error);
-        }
-        console.log("Mail gönderildi:", info.response);
-        await Ilan.insertMany(yeniIlanlar);
-        console.log("Yeni ilanlar MongoDB'ye kaydedildi.");
-      });
+      // sendMail'i Promise olarak kullan
+      await transporter.sendMail(mailOptions);
+      console.log("Mail gönderildi.");
+      await Ilan.insertMany(yeniIlanlar);
+      console.log("Yeni ilanlar MongoDB'ye kaydedildi.");
     } else {
       console.log("Yeni ilan yok, MongoDB güncellenmedi.");
     }
