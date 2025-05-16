@@ -104,7 +104,4 @@ async function ilanlariCekVeKontrolEt() {
   }
 }
 
-// İlk çalıştırma
-ilanlariCekVeKontrolEt();
-
 module.exports = { ilanlariCekVeKontrolEt };
