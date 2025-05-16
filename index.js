@@ -22,6 +22,8 @@ const ilanSchema = new mongoose.Schema({
 });
 const Ilan = mongoose.model("Ilan", ilanSchema);
 
+console.log(process.env.MAIL_HOST, process.env.MAIL_PORT, process.env.MAIL_USER, process.env.MAIL_PASS);
+
 // Mail ayarları
 const transporter = nodemailer.createTransport({
   host: process.env.MAIL_HOST,
